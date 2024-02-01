@@ -64,8 +64,8 @@
 // });
 
 //event module
-const EventEmitter = require('events');
-const emitter = new EventEmitter();
+// const EventEmitter = require('events');
+// const emitter = new EventEmitter();
 //listening event
 // emitter.on("message recieved",()=>{
 //     console.log("message from client is recieved");
