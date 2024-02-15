@@ -8,6 +8,13 @@ app.use(morgan("dev"));
 app.use(express.json());//inbuilt middleware
 app.use(express.static("class7/public"));
 app.use(express.urlencoded({extended:true}));
+
+
+
+
+
+
+
 //template engins
 app.set("view engine","pug");
 app.set("views","./class7/views");
@@ -55,6 +62,8 @@ app.set("views","./class7/views");
 //     if(user_id==="123") return res.status(403).send("Invalid user");
 //     else next();
 // })
+
+
 
 
 app.use('/cars',cars);
