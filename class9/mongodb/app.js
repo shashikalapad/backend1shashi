@@ -73,9 +73,78 @@ createBook();
 //getbooks();
 
 //By id
-async function getbooks(id){
-  const books = await Book.find({_id:id})
+// async function getbooks(id){
+//   const books = await Book.find({_id:id})//find return array of object
 
-  console.log("books",books);
+//   console.log("books",books);
+// }
+// getbooks('65cde78b08d5c15d08ec0317');
+
+//update data
+// async function updateBooks(id){
+//   const books = await Book.findById(id);
+//   console.log("book to be updated",Book);
+// }
+//updateBooks('65cde78b08d5c15d08ec0317');
+//if pass empty or wrong id
+// async function updateBooks(id){
+//   const books = await Book.findById(id);
+//   console.log("book to be updated",Book);
+// }
+// updateBooks();
+//if no book
+// async function updateBooks(id){
+//   const book = await Book.findById(id);
+//   console.log("book to be updated",Book);
+//   if(!book) return ;
+//   book.author ="k k rowling";
+//   book.isPublished = false;
+//   const updatedBook =await book.save();
+//   console.log(`updated book->${updatedBook}`)
+
+// }
+// updateBooks('65cde78b08d5c15d08ec0317');
+
+//destucturing
+// async function updateBooks(id){
+//   const book = await Book.findById(id);
+//   console.log("book to be updated",Book);
+//   if(!book) return ;
+//   // book.author ="k k rowling";
+//   // book.isPublished = false;
+//   book.set({
+//     author:"RR Rowling",
+//     name:"Harry potter",
+//   });
+//   const updatedBook =await book.save();
+//   console.log(`updated book->${updatedBook}`)
+
+// }
+// updateBooks('65cde78b08d5c15d08ec0317');
+
+
+//how to write in express
+// async function updateBooks(id){
+//   const book = await Book.findById(id);
+//   console.log("book to be updated",Book);
+//   if(!book) return ; 
+//   const {author,name } = req.body;
+//   book.set({
+//     author,
+//     name,
+//   });
+//   const updatedBook =await book.save();
+//   console.log(`updated book->${updatedBook}`)
+
+// }
+//updateBooks('65cde78b08d5c15d08ec0317');
+//delete
+async function deleteBooks(id){
+  // const Book =await Book.findByIdAndDelete(id)//recommanded way
+
+   const deletedBook =await Book.deleteOne({author:"shashikala"})
+  console.log("deleted book",deletedBook);
 }
-getbooks('65cde78b08d5c15d08ec0317');
+deleteBooks('65cdfbeb2646e6e234bf21fe')
+
+
