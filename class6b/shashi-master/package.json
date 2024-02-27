@@ -1,11 +1,11 @@
 {
   "name": "shashi",
   "version": "1.0.0",
-  "description": "This is shashis own module.",
+  "description": "This is shashi own module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "shashikala BR",
+  "author": "shashikala B R",
   "license": "ISC"
 }

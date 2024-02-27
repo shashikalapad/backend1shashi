@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {validate} = require("../helper/validate")
 
 
 const bikes = [
@@ -59,12 +60,7 @@ router.delete('/:id',(req,res)=>{
 
 });
 //validate function
-
- function validate(bikeBody){
-  const schema = Joi.object({
-      name :Joi.string().min(3).max(15).required(),
-      });
-return schema.validate(bikeBody);
-}
+ //passed below function to helper/validate.js file
+ 
 
 module.exports = router;

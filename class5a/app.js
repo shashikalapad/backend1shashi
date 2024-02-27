@@ -1,6 +1,6 @@
 const express = require ("express");
-const cars = require('./router/cars');
-const bikes = require('./router/bikes');
+const cars = require('./routes/cars');
+const bikes = require('./routes/bikes');
 
 const app = express();
 app.use(express.json());
@@ -8,9 +8,9 @@ app.use(express.json());
 app.get('/',(req,res)=> {
     return res.send("welcome to maruti cars");
 });
-app.use('/cars',cars);
-app.use('/bikes',bikes);
 
+app.use('/cars',cars);
+app.use("/bikes",bikes);
 
 
 

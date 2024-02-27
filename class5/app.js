@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
+
 // app.listen(5000,() => console.log("Server is running on 5000...."));
 //Cannot GET / ---> on UI
 
@@ -8,6 +10,8 @@ const app = express();
 // })
 // shashi page ---> on UI
 ///express can create CURD operation.
+
+
 
 app.get('/',(req,res)=> {
     return res.send("welcome to maruti cars");
@@ -18,21 +22,20 @@ const cars = [
     {id:2,name:"ferrari"},
     {id:3,name:"honda"},
 ];
-const bikes = [
-    {id:1,name:"motorbike"},
-    {id:2,name:"sujiki"},
-    {id:3,name:"tvs"},
-];
-app.use(express.json());
+// const bikes = [
+//     {id:1,name:"motorbike"},
+//     {id:2,name:"sujiki"},
+//     {id:3,name:"tvs"},
+// ];
+
+
+
+
 app.get('/cars',(req,res)=>{
     return res.send(cars);
 });
-app.get('/',(req,res)=> {
-    return res.send("welcome to maruti cars");
-});
-app.get('/bikes',(req,res)=>{
-    return res.send(cars);
-});
+
+
 //static
 // app.get('/cars/1',(req,res)=>{
 //     return res.send(cars[0]);
@@ -97,6 +100,9 @@ app.get("/cars/:id",(req,res)=>{
 //     console.log("body.....",req.body);
 //  })
 //if not sending data
+
+
+
 app.post('/cars',(req,res)=>{
     const { name } = req.body;
     if(!name) return res.status(400).send("name parameter is required");
@@ -106,8 +112,10 @@ app.post('/cars',(req,res)=>{
     }
     cars.push(newCar);
     return res.status(201).send(newCar);
-    console.log("body.....",req.body);
+    //console.log("body.....",req.body);
  });
+
+
  app.put('/cars/:id',(req,res)=>{
     const{name }=req.body;
     if(!name) return res.status(404).send("name parameter is required");
@@ -126,6 +134,13 @@ app.post('/cars',(req,res)=>{
     cars.splice(index,1);
     return res.status(200).send(car);
  })
+
+
+
+
+
+
+ 
  //to check some data from API on UI
  app.get("/check/:name/:age",(req,res)=>{
   return res.send(req.params);

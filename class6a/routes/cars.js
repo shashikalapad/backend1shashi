@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const {validate} = require("../helper/validate")
+
 const cars = [
     {id:1,name:"mahindra"},
     {id:2,name:"ferrari"},
@@ -11,12 +13,6 @@ router.get('/',(req,res)=>{
     return res.send(cars);
 });
 
-router.get("/check/:name/:age",(req,res)=>{
-    return res.send(req.params);
-   });
-  
-
-
 router.get("/:id",(req,res)=>{
         const { id } = req.params;
        const car = cars.find((data)=>data.id === Number(id))
@@ -25,10 +21,12 @@ router.get("/:id",(req,res)=>{
      });
 
 
-router.post('/',(req,res)=>{
-    const { name } = req.body;
-    if(!name) return res.status(400).send("name parameter is required");
-    const newCar = {
+router.post('/',(req,res)=>{ 
+    const {error} = validate(req.body);
+    const { name } = req.body;  
+    if(error)
+    return res.status(400).send(error.details[0].message);   
+        const newCar = {
         id:cars.length + 1,
         name,
     }
@@ -36,16 +34,19 @@ router.post('/',(req,res)=>{
     return res.status(201).send(newCar);
     console.log("body.....",req.body);
  });
- router.put('/:id',(req,res)=>{
-    const{name }=req.body;
-    if(!name) return res.status(404).send("name parameter is required");
 
+ router.put('/:id',(req,res)=>{   
+    const {error} = validate(req.body);
+    const { name } = req.body;
+    if(error)
+    return res.status(400).send(error.details[0].message);
     const {id }=req.params;
     const car = cars.find((data)=>data.id === Number(id));
     if(!car) return res.status(404).send("car data not found");
     car.name = name;
     return res.status(200).send(car);
  })
+
  router.delete('/:id',(req,res)=>{
     const { id } = req.params;
     const car = cars.find((data)=>data.id===Number(id));
@@ -54,5 +55,9 @@ router.post('/',(req,res)=>{
     cars.splice(index,1);
     return res.status(200).send(car);
  });
+ //validate function
+ //passed below function to helper/validate.js file
+ 
+
 
 module.exports = router;

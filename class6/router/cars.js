@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {validate} = require('../helper/validate');
+
 // const Joi =require('joi');-->move to helper/validate.js file
 const cars = [
     {id:1,name:"mahindra"},
@@ -12,12 +12,6 @@ const cars = [
 router.get('/',(req,res)=>{
     return res.send(cars);
 });
-
-router.get("/check/:name/:age",(req,res)=>{
-    return res.send(req.params);
-   });
-  
-
 
 router.get("/:id",(req,res)=>{
         const { id } = req.params;
@@ -79,13 +73,13 @@ router.post('/',(req,res)=>{
     return res.status(200).send(car);
  });
  //validate function
- //passed below function to helper/validate.js file
-//  function validate(carBody){
-//     const schema = Joi.object({
-//         name :Joi.string().min(3).max(15).required(),
-//         });
-//  return schema.validate(carBody);
-//}
+
+ function validate(carBody){
+    const schema = Joi.object({
+        name :Joi.string().min(3).max(15).required(),
+        });
+ return schema.validate(carBody);
+}
 
 
 module.exports = router;
