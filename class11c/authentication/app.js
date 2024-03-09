@@ -1,6 +1,6 @@
 const express = require('express');
 //bcrypt
-const bcrypt = require("bcrypt");
+const bcrypt = require("Bcrypt");
 const SALT_ROUNDS = 10;
 
 
